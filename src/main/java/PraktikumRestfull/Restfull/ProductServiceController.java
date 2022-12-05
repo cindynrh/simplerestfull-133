@@ -3,6 +3,11 @@ package PraktikumRestfull.Restfull;
 import PraktikumRestfull.Restfull.pws.Product;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -28,5 +33,11 @@ public class ProductServiceController {
         almond.setId("2");
         almond.setName("Almond");
         productRepo.put(almond.getId(), almond);
+    }
+    
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> delete(@PathVariable("id") String id) {
+        productRepo.remove(id);
+        return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
     }
 }
