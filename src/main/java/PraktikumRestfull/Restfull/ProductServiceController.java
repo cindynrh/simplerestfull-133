@@ -41,7 +41,7 @@ public class ProductServiceController {
         productRepo.remove(id);
         return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
     }
-    
+//PUT API    
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
 
@@ -55,7 +55,8 @@ public class ProductServiceController {
             return new  ResponseEntity<>("Product is updated Successfully",HttpStatus.OK);
         }
     }
-    
+
+//POST API    
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Product product){
 
