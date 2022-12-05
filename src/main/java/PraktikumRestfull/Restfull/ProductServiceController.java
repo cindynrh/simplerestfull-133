@@ -55,4 +55,16 @@ public class ProductServiceController {
             return new  ResponseEntity<>("Product is updated Successfully",HttpStatus.OK);
         }
     }
+    
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    public ResponseEntity<Object> createProduct(@RequestBody Product product){
+
+        if(productRepo.containsKey(product.getId())){ 
+            return new ResponseEntity<>("ID Product Cannot be the Same, please check again", HttpStatus.OK);
+        }
+        else{
+            productRepo.put(product.getId(), product);
+            return new ResponseEntity<>("Product is created Successfully", HttpStatus.CREATED);
+        }
+    }
 }
